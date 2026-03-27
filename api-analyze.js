@@ -13,7 +13,6 @@ module.exports = async (req, res) => {
         let messages;
 
         if (textOnly && itemName) {
-            // Text-only mode for shopping list estimates
             messages = [{
                 role: 'user',
                 content: `You are a Vietnam market price expert. Give a fair local price estimate for: "${itemName}"
@@ -32,17 +31,12 @@ Respond ONLY with valid JSON in this exact format:
 Use Vietnamese Dong (VND) amounts as plain integers. No markdown, no explanation, just JSON.`
             }];
         } else if (image) {
-            // Image-based analysis
             messages = [{
                 role: 'user',
                 content: [
                     {
                         type: 'image',
-                        source: {
-                            type: 'base64',
-                            media_type: 'image/jpeg',
-                            data: image
-                        }
+                        source: { type: 'base64', media_type: 'image/jpeg', data: image }
                     },
                     {
                         type: 'text',
